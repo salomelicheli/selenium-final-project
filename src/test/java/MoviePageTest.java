@@ -1,7 +1,8 @@
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import static ge.tbc.itacademy.data.constants.RegistrationData.movieName;
+
+import static ge.tbc.itacademy.data.constants.RegistrationData.*;
 
 public class MoviePageTest extends Config {
     @Test
@@ -20,13 +21,13 @@ public class MoviePageTest extends Config {
         Assert.assertTrue(moviePage.expectedDateTime().contains(moviePage.correctTime()));
         moviePage.choosingAnAvailablePlace();
         moviePage.creatingAnAccount();
-        register.inputEmail();
-        register.inputName();
-        register.inputLastName();
-        register.inputPasswords();
-        register.markGender();
-        register.selectBirthYear();
-        register.inputPhoneNumber();
+        register.inputEmail(email);
+        register.inputName(firstName);
+        register.inputLastName(lastName);
+        register.inputPasswords(password);
+        register.markGender(gender);
+        register.selectBirthYear(birthYear);
+        register.inputPhoneNumber(phoneNumber);
         register.agreeToTermsCheck();
         register.agreeToPoliticsCheck();
         register.submitForm();
