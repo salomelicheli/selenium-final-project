@@ -13,9 +13,9 @@ public class LandingPageTest extends Config {
         landing.hoverOnSportsCategories();
         landing.choosingCartingOption();
         Assert.assertEquals(driver.getCurrentUrl(), EXPECTED_URL);
-        String color = landing.kartingi().getCssValue(ConstantData.color);
+        String color = landing.kartingi().getCssValue(ConstantData.COLOR);
         Color colorInHex = Color.fromString(color);
-        Assert.assertTrue(ConstantData.colorInHex.equalsIgnoreCase(colorInHex.asHex()));
+        Assert.assertTrue(ConstantData.COLOR_HEX.equalsIgnoreCase(colorInHex.asHex()));
     }
     @Test
     public void logoTest(){
