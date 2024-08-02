@@ -1,5 +1,7 @@
 package ge.tbc.itacademy.data.objectrepository;
 import java.util.List;
+
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,13 +11,13 @@ public class MoviePage extends DriverInit{
     WebElement movie;
     @FindBy(css=".movies-deal .movie-name")
     WebElement firstMovie;
-    @FindBy(xpath = "//li[@aria-controls='384933']//a[contains(text(), 'კავეა ისთ ფოინთი')]")
+    @FindBy(xpath = "//li//a[text()= 'კავეა ისთ ფოინთი']")
     WebElement caveaEastPoint; //text
     @FindBy(xpath = "//div[@id='384933']//div[contains(@id, 'day')]//p[@class='cinema-title']")
     List <WebElement> eastPointOptions;
     @FindBy(css = "div[id*='384933'] div ul li:last-child")
     WebElement lastDate;
-    @FindBy(css = "div[id*='day'][aria-hidden='false']:last-child")
+    @FindBy(css = "div[id='384933'] div[id*='day']:last-child")
     WebElement lastSeance;
     @FindBy(css = "div[class='seat free']")
     WebElement anyAvailableSeat;
@@ -27,7 +29,7 @@ public class MoviePage extends DriverInit{
     WebElement expectedMovieName;
     @FindBy(css = "div.content-header p:first-child")
     WebElement MovieName;
-    @FindBy(css = "div[id*='day'][aria-hidden='false']:last-child a p[style]")
+    @FindBy(css = "div[id='384933'] div[id*='day']:last-child a p[style]")
     WebElement correctTime;
     @FindBy(css = ".content-header .movie-cinema")
     WebElement expectedMovieTheatre;
@@ -68,7 +70,7 @@ public class MoviePage extends DriverInit{
     }
     public void choosingCaveaEastPoint(){
         js.executeScript("window.scrollBy(0,300);");
-        caveaEastPoint.click();
+        action.moveToElement(caveaEastPoint).click().perform();
     }
     public void clickOnLastDateAvailable(){
         lastDate.click();
@@ -79,7 +81,11 @@ public class MoviePage extends DriverInit{
         wait.until(ExpectedConditions.visibilityOf(ticketsAndPopcorn));
     }
     public void choosingAnAvailablePlace(){
-        anyAvailableSeat.click();
+        try {
+            anyAvailableSeat.click();
+        } catch (NoSuchElementException e) {
+            System.out.println("Free seat not available");
+        }
     }
     public void creatingAnAccount(){
         createAccountButton.click();
