@@ -12,8 +12,6 @@ public class RegistrationPage extends DriverInit{
     WebElement emailField;
     @FindBy(css="input[type='password']")
     List<WebElement> passwordFields;
-    @FindBy(xpath = "//span[text() = 'მდედრობითი']/ancestor::label//input")
-    WebElement genderRadioButton;
     @FindBy(id = "name")
     WebElement nameField;
     @FindBy(id="surname")
