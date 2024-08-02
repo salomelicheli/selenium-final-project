@@ -8,5 +8,7 @@ public class RegistrationData {
           password = "Somepassword1234",
           movieName = "კავეა ისთ ფოინთი",
           minprice = "80",
-          maxprice = "90";
+          maxprice = "90",
+          gender = "მდედრობითი",
+          birthYear = "2002";
 }

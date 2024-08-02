@@ -1,4 +1,5 @@
 package ge.tbc.itacademy.data.objectrepository;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,8 +12,6 @@ public class RegistrationPage extends DriverInit{
     WebElement emailField;
     @FindBy(css="input[type='password']")
     List<WebElement> passwordFields;
-    @FindBy(id = "Gender2")
-    WebElement genderRadioButton;
     @FindBy(id = "name")
     WebElement nameField;
     @FindBy(id="surname")
@@ -38,26 +37,27 @@ public class RegistrationPage extends DriverInit{
         return emailInputErrorMessage.getText();
     }
 
-    public void inputEmail(){
+    public void inputEmail(String email){
         emailField.sendKeys(email);
     }
-    public void inputPasswords(){
+    public void inputPasswords(String password){
         passwordFields.forEach(c -> c.sendKeys(password));
     }
-    public void markGender(){
+    public void markGender(String gender){
+        WebElement genderRadioButton = driver.findElement(By.xpath("//span[text() = '" + gender + "']/ancestor::label//input"));
         genderRadioButton.click();
     }
-    public void inputName(){
+    public void inputName(String firstName){
         nameField.sendKeys(firstName);
     }
-    public void inputLastName(){
+    public void inputLastName(String lastName){
         lastNameField.sendKeys(lastName);
     }
-    public void inputPhoneNumber(){
+    public void inputPhoneNumber(String phoneNumber){
         phoneField.sendKeys(phoneNumber);
     }
-    public void selectBirthYear(){
-        js.executeScript("arguments[0].value='2002'", dropDownField);
+    public void selectBirthYear(String year){
+        js.executeScript("arguments[0].value='"+ year +"'", dropDownField);
     }
     public void agreeToPoliticsCheck(){
         js.executeScript("arguments[0].click();", agreeToPolitics);
